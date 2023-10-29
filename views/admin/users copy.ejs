@@ -166,96 +166,29 @@
 <%- include('inc/footer') -%>
 
 <script src="/js/hcode-formsave.js"></script>
+<script src="/js/hcode-grid.js"></script>
+<script>
 
+  new HcodeGrid({
+    id: 'grid',
+    urlDelete: '/admin/users/${data.id}',
+    textDeleteConfirm: 'Deseja realmente excluir o usuário ${data.name}?',
+    listeners:{
+      clickRowButton: (btn, data, row, event) => {
 
-    <script>  
+        document.querySelector('#modal-update-password [name=id]').value = data.id;
 
-      let formCreate = document.querySelector("#modal-create form");
+      }
+    }
+  });
 
-          formCreate.save().then(json => {
+  document.querySelector('#modal-update-password form').submitAjax({
+    success:()=>{
+      window.location.reload();
+    },
+    failure:error=>{
+      alert(error);
+    }
+  });
 
-              window.location.reload();
-
-          }).catch(err=> {
-            console.log(err);
-          });
-      
-       
-    let formUpdate = document.querySelector("#modal-update form");
-
-    formUpdate.save().then(json => {
-
-        window.location.reload();
-
-    }).catch(err=> {
-        console.log(err);
-    });
-
-    [...document.querySelectorAll('.btn-delete')].forEach(btn => {
-
-      btn.addEventListener('click', e => {
-
-       
-        let tr = e.composedPath().find(el => {
-
-          return (el.tagName.toUpperCase() === 'TR');
-
-        });
-
-        let data = JSON.parse(tr.dataset.row);
-
-        if (confirm(`Deseja realmente ecluir o produto ${data.name}?`)) {
-
-              fetch(`/admin/users/${data.id}`, {
-
-                method: 'DELETE'
-
-              })
-
-                .then(response => response.json())
-                .then(json => {
-
-                  window.location.reload();
-
-                });
-        }
-      
-
-      });
-
-    });
-
-    [...document.querySelectorAll('.btn-update')].forEach(btn => {
-
-
-
-      btn.addEventListener('click', e => {
-
-        let tr = e.composedPath().find(el => {
-
-          return (el.tagName.toUpperCase() === 'TR');
-
-        });
-
-      if (!tr)  console.error('Elemento "tr" não encontrado ou indefinido.');
-
-
-       let data = JSON.parse(tr.dataset.row);
-
-        
-        for (let name in data) {
-                
-                let input = formUpdate.querySelector(`[name=${name}]`);
-                if (input) input.value = data[name];
-
-          }
-
-        
-        $('#modal-update').modal('show');
-
-      });
-
-    });
-    
-
-    </script>
+</script>
