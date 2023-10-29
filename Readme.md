@@ -1,5 +1,9 @@
 ### Projeto Vulpo com MySQL
 
+### Executar o Script para criação do banco de dados e inserir alguns dados
+### Copiar esse script mysql.sql dentro do banco de dados e executar
+    vulpo/public/db/mysql.sql
+
 ### Para executar o aplicativo em modo GitBash na pasta raiz do Vulpo
     set DEBUG=vulpo:* & npm start
 
