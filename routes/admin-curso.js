@@ -1,5 +1,5 @@
 var express = require("express");
-var users = require('./../inc/users');
+var users = require('../inc/users');
 var admin = require('./../inc/admin');
 var menus = require('./../inc/menus');
 var router = express.Router();
@@ -140,46 +140,68 @@ router.get("/reservations", function (req, res, next) {
 
 });
 
-router.get("/users", function (req, res, next) {
+router.get('/users', (req, res, next) => {
 
-  users.getUsers().then(data => {
-      
-    res.render("admin/users", admin.getParams(req, {
+  admin.getUsers().then(data => {
 
-        data
-
-    }));
-
-  });
-  
-  
-});
-
-router.post("/users", function (req, res, next) {
-
- 
-  users.save(req.fields).then(results => {
-
-      res.send(results);
-
-  }).catch(err => {
-
-    res.send(err);
+      res.render('admin/users', {
+          url: req.url,
+          user: req.session.user,
+          data,
+          moment
+      });
 
   });
 
 });
 
-router.delete("/users/:id", function (req, res, next) {
-  
-  users.delete(req.params.id).then(results => {
+router.post('/users', (req, res, next) => {
 
-    res.send(results);
+  admin.usersSave(req).then(data => {
+
+      res.send(data);
 
   }).catch(err => {
 
-    res.send(err);
-    
+      res.status(400);
+      res.send({
+          error: err
+      });
+
+  });
+
+});
+
+/*router.post('/users/password', (req, res, next) => {
+
+  admin.usersPassword(req).then(data => {
+
+      res.send(data);
+
+  }).catch(err => {
+
+      res.status(400);
+      res.send({
+          error: err
+      });
+
+  });
+
+});*/
+
+router.delete('/users/:id', (req, res, next) => {
+
+  admin.usersDelete(req).then(data => {
+
+      res.send(data);
+
+  }).catch(err => {
+
+      res.status(400);
+      res.send({
+          error: err
+      });
+
   });
 
 });
