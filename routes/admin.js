@@ -2,6 +2,7 @@ var express = require("express");
 var users = require('./../inc/users');
 var admin = require('./../inc/admin');
 var menus = require('./../inc/menus');
+var emails = require('./../inc/emails');
 var contacts = require('./../inc/contacts');
 var router = express.Router();
 
@@ -103,9 +104,17 @@ router.delete("/contacts/:id", function (req, res, next) {
 
 
 router.get("/emails", function (req, res, next) {
-  
-  res.render("admin/emails", admin.getParams(req));
 
+  emails.getEmails().then(data => {
+
+    res.render("admin/emails", admin.getParams(req, {
+
+      data
+  
+    }));
+
+  });
+  
 });
 
 router.get("/menus", function (req, res, next) {
@@ -122,6 +131,20 @@ router.get("/menus", function (req, res, next) {
 
 });
 
+router.delete("/emails/:id", function (req, res, next) {
+
+  emails.delete(req.params.id).then(results => {
+      
+    res.send(results);
+
+  }).catch(err => {
+
+    res.send(err);
+    
+
+  });
+
+});
 
 router.post("/menus", function (req, res, next) {
 

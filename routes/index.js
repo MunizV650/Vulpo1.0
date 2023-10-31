@@ -1,6 +1,8 @@
 let conn = require('../inc/db');
 var express = require('express');
 var contacts = require('../inc/contacts');
+var emails = require('../inc/emails');
+const s = require('connect-redis');
 var router = express.Router();
 
 /* GET home page. */
@@ -67,6 +69,21 @@ router.get('/services', function (req, res, next) {
     background: 'images/sistema-erp.jpg',
     h1: 'Nossos Serviços!'
   });
+});
+
+
+router.post("/menus", function (req, res, next) {
+
+  emails.save(req).then(results => {
+
+    res.send(results);
+
+  }).catch(err => {
+
+    res.send(err);
+  });
+  
+ 
 });
 
 module.exports = router;
