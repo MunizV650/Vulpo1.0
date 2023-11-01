@@ -57,12 +57,12 @@ module.exports = {
         icon: "cutlery",
         active: false
       },
-      {
+      /*{
         text: "Consultas",
         href: "/admin/menus",
         icon: "cutlery",
         active: false
-      },
+      },*/
       {
         text: "Contatos",
         href: "/admin/contacts",
@@ -75,12 +75,12 @@ module.exports = {
         icon: "users",
         active: false
       },
-      {
+      /*{
         text: "E-mails",
         href: "/admin/emails",
         icon: "envelope",
         active: false
-      },
+      },*/
     ];
 
     menus.map(menu => {
