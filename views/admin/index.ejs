@@ -8,8 +8,10 @@
           Tela Inicial
         </h1>
         <ol class="breadcrumb">
-          <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-          <li class="active">Usuários</li>
+          <li><a href="/admin/"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="/admin/menus"><i class="active"></i>Produtos</a></li>
+          <li><a href="/admin/contacts"><i class="active"></i>Contatos</a></li>
+          <li><a href="/admin/users"><i class="active"></i>Usuários</a></li>
         </ol>
       </section>
 
@@ -17,8 +19,8 @@
       <section class="content container-fluid">
 
         <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box" onclick="window.location.href = '/reservations'" style="cursor:pointer">
+          <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box" onclick="window.location.href = '/reservations'" style="cursor:pointer">
               <span class="info-box-icon bg-aqua">
                 <i class="ion ion-ios-calendar"></i>
               </span>
@@ -26,26 +28,13 @@
               <div class="info-box-content">
                 <span class="info-box-text">Consultas</span>
                 <span class="info-box-number"><%= data.nrreservations %></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
+              </div> 
+              /.info-box-content 
+            </div> 
+             /.info-box
+          </div> -->
           <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box" onclick="window.location.href = '/contacts'" style="cursor:pointer">
-              <span class="info-box-icon bg-red">
-                <i class="ion ion-ios-chatboxes"></i>
-              </span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Contatos</span>
-                <span class="info-box-number"><%= data.nrcontacts %></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
           <!-- /.col -->
 
           <!-- fix for small devices only -->
@@ -66,6 +55,22 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box" onclick="window.location.href = '/contacts'" style="cursor:pointer">
+              <span class="info-box-icon bg-red">
+                <i class="ion ion-ios-chatboxes"></i>
+              </span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Contatos</span>
+                <span class="info-box-number"><%= data.nrcontacts %></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
           <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box" onclick="window.location.href = '/users'" style="cursor:pointer">
               <span class="info-box-icon bg-yellow">
