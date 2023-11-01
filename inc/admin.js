@@ -52,7 +52,7 @@ module.exports = {
         active: false
       },
       {
-        text: "Produtos",
+        text: "ERP´s",
         href: "/admin/menus",
         icon: "cutlery",
         active: false
