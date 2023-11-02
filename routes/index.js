@@ -9,7 +9,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) { 
   
   conn.query(
-    "SELECT * FROM tb_menus ORDER BY title",
+    "SELECT * FROM tb_produtos ORDER BY title",
     (err, results, fields) => {
 
       if (err) {
