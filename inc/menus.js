@@ -8,7 +8,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
 
       conn.query(`
-        SELECT * FROM tb_menus ORDER BY title
+        SELECT * FROM tb_produtos ORDER BY title
       
       `, (err, results) => {
         
@@ -36,7 +36,7 @@ module.exports = {
       if (parseInt(fields.id) > 0) {
 
         query = `
-            UPDATE tb_menus
+            UPDATE tb_produtos
             SET title = ?,
                 description = ?,
                 price = ?,
@@ -55,7 +55,7 @@ module.exports = {
       } else {
 
         query = `
-          INSERT INTO tb_menus (title, description, price, photo)
+          INSERT INTO tb_produtos (title, description, price, photo)
           VALUES (?, ?, ?, ?)
         `;
 
@@ -90,7 +90,7 @@ module.exports = {
 
       conn.query(`
 
-          DELETE FROM tb_menus WHERE id = ?
+          DELETE FROM tb_produtos WHERE id = ?
       
       `, [
           id
