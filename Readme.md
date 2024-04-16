@@ -40,3 +40,6 @@
 
 ### Instalar o Formidable para gravar no bano de dados na pasta vulpo
     npm install formidable --save
+
+### Instalar o bcrypt para criptografar senha no banco de dados (RASH)
+    npm install bcrypt
