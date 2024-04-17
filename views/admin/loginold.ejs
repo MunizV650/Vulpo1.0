@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Vulpo Entrar</title>
+    <title>Admin</title>
     <meta
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
       name="viewport"
@@ -34,29 +34,16 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>Admin</b>Vulpo</a>
+        <a href="#"><b>Admin</b>Login</a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Acesso a Área Restrita</p>
 
-        <!-- Alerta de senha errada -->
-        <% if (error) { %>
-        <div class="alert alert-danger alert-dismissible">
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-hidden="true"
-          >
-            &times;
-          </button>
-          <h4><i class="icon fa fa-ban"></i> Atenção!</h4>
-          <%= error %>
-        </div>
-        <% } %>
+        <!-- Include Alerts -->
+        <% include('../inc/alerts') %>
 
-        <form id="login_form" method="post" onsubmit="return validateForm()">
+        <form id="login_form" method="post">
           <div class="form-group has-feedback">
             <input
               name="email"
@@ -91,7 +78,7 @@
               <br />
               <button
                 type="button"
-                onclick="validateForm()"
+                onclick="submitForm()"
                 class="btn btn-primary btn-block btn-flat"
               >
                 Entrar
@@ -132,18 +119,6 @@
         if (response.length === 0) {
           alert("Favor marcar a opção 'Não sou um robô'");
         } else {
-          document.getElementById("login_form").submit();
-        }
-      }
-
-      function validateForm() {
-        var email = document.getElementsByName("email")[0].value;
-        var password = document.getElementsByName("password")[0].value;
-
-        if (email.trim() === "" || password.trim() === "") {
-          alert("Por favor, preencha todos os campos de usuário e senha.");
-        } else {
-          // Se tudo estiver preenchido, submit do formulário
           document.getElementById("login_form").submit();
         }
       }
