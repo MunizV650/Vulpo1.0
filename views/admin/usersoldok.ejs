@@ -194,8 +194,11 @@
           >
             Cancelar
           </button>
-          <button type="submit" class="btn btn-success" onclick="return validateFormCreate()">Salvar</button>
-
+          <button
+            type="submit"
+            class="btn btn-success"
+            onclick="return validateFormCreate()"
+          >
             Salvar
           </button>
         </div>
@@ -259,7 +262,7 @@
   <!-- /.modal-dialog -->
 </div>
 <script>
-  function validateFormCreate() {
+  function validateFormCreate(event) {
     // Obter o valor do campo de nome
     const name = document.getElementById("inputNameCreate").value.trim();
 
@@ -272,7 +275,9 @@
 
     // Obter os valores dos campos de email e senha
     const email = document.getElementById("inputEmailCreate").value.trim();
-    const password = document.getElementById("inputPasswordCreate").value.trim();
+    const password = document
+      .getElementById("inputPasswordCreate")
+      .value.trim();
 
     // Validar o email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -282,9 +287,12 @@
     }
 
     // Validar a senha
-    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    const passwordRegex =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     if (!passwordRegex.test(password)) {
-      alert("A senha deve ter no mínimo 8 caracteres, incluindo pelo menos um caractere especial, uma letra maiúscula e um número.");
+      alert(
+        "A senha deve ter no mínimo 8 caracteres, incluindo pelo menos um caractere especial, uma letra maiúscula e um número."
+      );
       return false;
     }
 
@@ -292,7 +300,6 @@
     return true;
   }
 </script>
-
 
 <%- include('inc/footer') -%>
 
