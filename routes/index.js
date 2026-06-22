@@ -1,4 +1,4 @@
-let conn = require('../inc/db');
+let conn = require('../inc/db.config');
 var express = require('express');
 var contacts = require('../inc/contacts');
 var emails = require('../inc/emails');

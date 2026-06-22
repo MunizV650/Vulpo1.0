@@ -1,6 +1,10 @@
 node_modules/
 Readme.md
 readme.md
+.env
+.env.local
 .codex/
 Microsoft/
 _skill_copy_test/
+inc/db.js
+./inc/db.js
