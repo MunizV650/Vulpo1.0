@@ -71,6 +71,14 @@ router.get('/services', function (req, res, next) {
   });
 });
 
+router.get('/politica', function (req, res, next) {
+  res.render('politica', {
+    title: 'Política de Privacidade - Vulpo!',
+    background: 'images/sistema-erp.jpg',
+    h1: 'Política de Privacidade!'
+  });
+});
+
 
 router.post("/menus", function (req, res, next) {
 
@@ -82,6 +90,21 @@ router.post("/menus", function (req, res, next) {
 
     res.send(err);
   });
+  
+ 
+});
+
+router.get("/teste", function (req, res, next) {
+
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify({
+      users:[{
+          name: 'Professor Adriano',
+          email: 'contato@adriano.com.br',
+          id: 1
+      }]
+  }));
   
  
 });

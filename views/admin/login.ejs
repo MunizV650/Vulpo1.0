@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      (function (d) {
+        var s = d.createElement("script");
+        /* uncomment the following line to override default position*/
+        s.setAttribute("data-position", 2);
+
+        s.setAttribute("data-account", "WMIzs45CY4");
+        s.setAttribute("src", "https://cdn.userway.org/widget.js");
+        (d.body || d.head).appendChild(s);
+      })(document);
+    </script>
+    <noscript
+      >Please ensure Javascript is enabled for purposes of
+      <a href="https://userway.org">website accessibility</a></noscript
+    >
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Vulpo Entrar</title>
@@ -54,9 +70,12 @@
           <h4><i class="icon fa fa-ban"></i> Atenção!</h4>
           <%= error %>
         </div>
+        <script>
+          grecaptcha.reset(); // Reseta o reCAPTCHA se houver erro
+        </script>
         <% } %>
 
-        <form id="login_form" method="post" onsubmit="return validateForm()">
+        <form id="login_form" method="post" onsubmit="return submitForm()">
           <div class="form-group has-feedback">
             <input
               name="email"
@@ -89,11 +108,7 @@
                 data-type="checkbox"
               ></div>
               <br />
-              <button
-                type="button"
-                onclick="validateForm()"
-                class="btn btn-primary btn-block btn-flat"
-              >
+              <button type="submit" class="btn btn-primary btn-block btn-flat">
                 Entrar
               </button>
             </div>
@@ -117,10 +132,6 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-      var onSubmit = function (token) {
-        document.getElementById("login_form").submit();
-      };
-
       var onloadCallback = function () {
         grecaptcha.render("html_element", {
           sitekey: "6LfuDJ8pAAAAADaGBSBsh3KZDeQDHRzkATd_wQzO",
@@ -129,23 +140,20 @@
 
       function submitForm() {
         var response = grecaptcha.getResponse();
-        if (response.length === 0) {
-          alert("Favor marcar a opção 'Não sou um robô'");
-        } else {
-          document.getElementById("login_form").submit();
-        }
-      }
-
-      function validateForm() {
         var email = document.getElementsByName("email")[0].value;
         var password = document.getElementsByName("password")[0].value;
 
         if (email.trim() === "" || password.trim() === "") {
           alert("Por favor, preencha todos os campos de usuário e senha.");
-        } else {
-          // Se tudo estiver preenchido, submit do formulário
-          document.getElementById("login_form").submit();
+          return false; // Impede o envio do formulário
         }
+
+        if (response.length === 0) {
+          alert("Favor marcar a opção 'Não sou um robô'");
+          return false; // Impede o envio do formulário se o reCAPTCHA não foi marcado
+        }
+
+        return true; // Submete o formulário se tudo estiver correto
       }
     </script>
   </body>
